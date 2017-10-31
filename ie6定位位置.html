@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .two{
+            position: relative;
+            border: 1px solid black;
+        }
+        .one{
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background: pink;
+        }
+        .three{
+            width: 200px;
+            height: 200px;
+             border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    
+
+    <div class="two">
+        <div class="three"></div>
+        <div class="one"></div>
+    </div>
+
+
+    <li class="header_right_li two">
+                      <!--<a href="/Hospitals/Search"  class="icon_sousuo"></a>-->
+                       <div class="search_top">
+                               <form action="/Hospitals/Search" method="post">                                <div id="languages" class="searchType_simulate">
+                                    <div id="languages" class="searchType">
+                                        <div class="controler"></div>
+                                        <input type="hidden" value="请选择语言" name="searchTypeId" id="searchTypeId">
+                                        <ul class="searchDownList" id="searchSexList" style="display: none;">
+                                            <li value="1">全部</li>
+                                            <li value="2">医生</li>
+                                            <li value="3">文章</li>
+                                            <li value="5">视频</li>
+                                            <li value="6">咨询</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <input type="text" placeholder="" name="search" id="search" class="searchtxt inp three">
+                                <input name="" value="" class="icon_sousuo one" type="submit">
+</form>                       </div>
+                  </li>
+</body>
+</html>

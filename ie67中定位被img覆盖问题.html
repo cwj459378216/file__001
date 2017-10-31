@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        div{
+            background:red;
+            width: 500px;
+            height: 500px;
+            position: relative;
+        }
+         #one{
+             display: none;
+             position: absolute;
+             left: 0;
+             bottom: -100px;
+         }
+    </style>
+</head>
+<body>
+    <div id="two">
+          <img src="./QQ截图20171025110311.png" alt="" id="one">
+    </div>
+    
+    <img src="./QQ图片20171025175825.jpg" alt="">
+</body>
+</html>
+
+    <script>
+
+        document.getElementById("two").onclick=function(){
+            document.getElementById("one").style.display="block";
+        }
+     
+    </script>

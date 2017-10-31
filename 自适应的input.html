@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script language="javascript">
+
+function checkLength(which) {
+    // var oTextCount = document.getElementById("char");   
+    iCount = which.value.replace(/[^\u0000-\u00ff]/g,"aa");
+    // oTextCount.innerHTML = "<font color=#FF0000>"+ iCount.length+"</font>";
+    which.style.border = '1px dotted #FF0000';
+	which.size=iCount.length+2;
+}
+ </script>
+</head>
+<body>
+<input name="words" size="2"    onkeyup="checkLength(this)"/>
+    <!--<span id="char">0</span>个字符-->
+
+</body>
+</html>
