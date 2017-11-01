@@ -12,4 +12,5 @@
 # hint: 'git pull ...') before pushing again.
 # hint: See the 'Note about fast-forwards' in 'git push --help' for details.问题
 #  可以看到本地文件多了README.md文件
-#
+#   git push -u origin master  上传
+
