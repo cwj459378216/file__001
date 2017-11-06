@@ -1,0 +1,327 @@
+@using MvcPentasoft.Models.News
+@using MvcPentasoft.Models.Videos
+@using MvcPentasoft.Models.Votes
+@using MvcPentasoft.Models.Journals
+@using MvcPentasoft.Models.Researches
+@using MvcPentasoft.Models.Organizations
+@using MvcPentasoft.Common
+@using MvcPentasoft.Common.Enums
+@using MvcPentasoft.Helpers
+@using MvcPentasoft.Models.Interactions
+@using MvcPentasoft.Models.Recruitments
+@using Omu.Awesome.Mvc.Helpers
+@model MvcPentasoft.Models.Platforms.Site
+@using MvcPentasoft.Common.Configurations
+@{
+    ViewBag.Title = "首页";
+}
+@section HeaderCss {
+  <link href="@Url.Content("~/Content/Areas/Hospitals/css/main.css")" rel="stylesheet" type="text/css" />
+  <link href="@Url.Content("~/Content/Areas/Hospitals/css/dongyingyiyuan.css")" rel="stylesheet" type="text/css" />
+}
+@section HeaderScript {
+<script src="@Url.Content("~/Content/Areas/Common/scripts/bigevent_tab.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/Areas/Common/scripts/dongyingyiyuan.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/Areas/Common/scripts/horizontal_pic_scroll.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/Areas/Common/scripts/idangerous.swiper-2.1.min.js")" type="text/javascript"></script>
+
+}
+
+<div id="img" style="position:fixed;*position: absolute; left: 200px; top: 200px;z-index: 9999" align="right">
+    <div align="center">
+        <a href="#"  target="_blank"> <img src="/Sites/Uploaded/UserUpLoad/20170911/20170911165002.png"/></a><br>
+            <span style="cursor: hand; color: #000; font-size: 12px; font-weight: bold; margin-top: -1px; position: relative; display: inline-block" id="kkkq">关&nbsp;闭</span>
+    </div>
+</div>
+<div id="img2" style="position:fixed;*position: absolute; left: 200px; top: 200px;z-index: 9999" align="right">
+    <div align="center">
+        <a href="/Html/News/Articles/2651.html"  target="_blank"> <img src="/Sites/Uploaded/UserUpLoad/20170623/20170623143927.jpg"/></a><br>
+            <span style="cursor: hand; color: #000; font-size: 12px; font-weight: bold; margin-top: -1px; position: relative; display: inline-block" id="kkkq1">关&nbsp;闭</span>
+    </div>
+</div>
+<div id="img3" style="position:fixed;*position: absolute; left: 200px; top: 200px;z-index: 9999" align="right">
+    <div align="center">
+        <a href="/Html/News/Articles/2677.html"  target="_blank"> <img src="/Sites/Uploaded/Image/2017/08/286363950989405157583727905.jpg"/></a><br>
+            <span style="cursor: hand; color: #000; font-size: 12px; font-weight: bold; margin-top: -1px; position: relative; display: inline-block" id="kkkq3">关&nbsp;闭</span>
+    </div>
+</div>
+@*<div id="img4" style="position:fixed;*position: absolute; left: 200px; top: 200px;z-index: 9999" align="right">
+    <div align="center">
+        <a href="/Html/News/Articles/2723.html"  target="_blank"> <img src="/Sites/Uploaded/UserUpLoad/20171025/20171025101904.jpg"/></a><br>
+            <span style="cursor: hand; color: #000; font-size: 12px; font-weight: bold; margin-top: -1px; position: relative; display: inline-block" id="kkkq4">关&nbsp;闭</span>
+    </div>
+</div>*@
+
+<script type="text/javascript">
+    function piaofu(imgid, delay, xVal, yVal, closeDiv) {
+        //imgid 漂浮标签的id
+        //delay 速度，越小越快
+        // xVal 初始x方向 值为1或者-1
+        //yVal  初始y方向 值为2或者-2
+        var kktime;
+        var height;
+        var width;
+        if (document.documentElement && document.documentElement.clientHeight && document.documentElement.clientWidth) {
+            height = document.documentElement.clientHeight;
+            width = document.documentElement.clientWidth - 12; //12为滚动条宽度、px
+        }
+        $(imgid).hover(
+            function () { clearInterval(kktime); $(closeDiv).click(function () { $(imgid).hide() }) },
+            function () {
+                kktime = setInterval(function () {
+                    var k = xVal + yVal;
+                    var bodyScrollLeft = $("body").scrollLeft();
+                    var bodyScrollTop = $(imgid).scrollTop();
+                    var imgidLeft = $(imgid).css("left");
+                    imgidLeft = imgidLeft.replace(/[^0-9]/ig, "");
+                    var imgidTop = $(imgid).css("top");
+                    imgidTop = imgidTop.replace(/[^0-9]/ig, "");
+                    var thisWidth = $(imgid).width();
+                    var thisHeight = $(imgid).height();
+                    if (k == 3) {
+                        imgidLeft++;
+                        imgidTop--;
+                    }
+                    if (k == 1) {
+                        imgidLeft--;
+                        imgidTop--;
+                    }
+                    if (k == -1) {
+                        imgidLeft++;
+                        imgidTop++;
+                    }
+                    if (k == -3) {
+                        imgidLeft--;
+                        imgidTop++;
+                    }
+                    $(imgid).css("left", imgidLeft + bodyScrollLeft);
+                    $(imgid).css("top", imgidTop + bodyScrollTop);
+                    if (imgidLeft <= bodyScrollLeft || imgidLeft >= width - bodyScrollLeft - thisWidth) {
+                        xVal = -xVal;
+                    }
+                    if (imgidTop >= height - bodyScrollTop - thisHeight || imgidTop <= bodyScrollTop) {
+                        yVal = -yVal;
+                    }
+
+                }, delay);
+            }
+        ).trigger("mouseleave");
+    }
+    piaofu('#img', 20, 1, 2, '#kkkq');
+    piaofu('#img2', 20, -1, -2, '#kkkq1');
+    piaofu('#img3', 20, 1, -2, '#kkkq3');
+    piaofu('#img4', 20, -1, 2, '#kkkq4');
+</script>
+
+<div class="home_Left floatL">
+    <div class="fastnav">
+        <h2>门诊服务</h2>
+        <ul>
+            <li><a href="/Html/News/Articles/1775.html" class="bg1" target="_blank"><span>预约挂号</span></a></li>
+            <li><a href="@Url.Action("Overview", "Doctors", new { area = "Hospitals" })" class="bg2"><span>专家介绍</span></a></li>
+            <li><a href="@Html.GetColumnUrl(29)" class="bg3"><span>方位指南</span></a></li>
+            <li><a href="@Url.Action("Index", "Schedulings", new { area = "Hospitals" })" class="bg4"><span>专家门诊</span></a></li>
+            <li><a href="@Html.GetColumnUrl(30)" class="bg5"><span>门诊流程</span></a></li>
+            <li><a href="/Html/News/Articles/1929.html" class="bg6"><span>便民服务</span></a></li>
+            <li><a href="@Html.GetArticleUrl(241)" class="bg7"><span>地理位置</span></a></li>
+            <li><a href="@Url.Action("Location", "Main", new { area = "Hospitals" })" class="bg8"><span>交通指南</span></a></li>
+            <div class="clearb"></div>
+        </ul>
+    </div>
+    
+    <div class="subNavBox">
+    <h2>东营市人民医院院中院</h2>
+  <div class="subNav currentDd currentDt">东营市立儿童医院</div>
+  <ul class="navContent " style="display:block">
+      <li><img src="/Sites/Uploaded/Image/2015/1/tu.jpg" style="float:left; margin-right:5px; padding-top:6px;">
+           <p>2013年12月底，备受全市人民关注和期盼的全市十大便民实事之一市立儿童医院全面建成并投入使用。远远望去，新启用的儿童医院典雅别致，仿佛一位聪慧、秀气的儿童正静静的矗立于市人民医院西邻，与周围景色浑然天成，成为了东城区又一处赏心悦目的美丽景观。<a href="@Html.GetSiteUrl(415)">更多</a></p>
+ </li>
+  </ul>
+  <div class="subNav">东营市立肿瘤医院</div>
+  <ul class="navContent">
+      <li><img src="/Sites/Uploaded/Image/2015/1/tu.jpg" style="float:left; margin-right:5px; padding-top:6px;">
+           <p>东营市立肿瘤医院是集医疗、科研、教学为一体的肿瘤专科医院。目前有四个病区和2个中心，即肿瘤放疗病区、腹部乳腺化疗病区、头颈胸化疗及介入治疗病区、生物治疗病区，以及放射治疗中心和生物治疗中心。<a href="@Html.GetSiteUrl(418)" >更多</a></p>
+ </li>
+  </ul>
+  <div class="subNav">东营市立骨科医院</div>
+  <ul class="navContent">
+     <li>
+        @Html.Action("_Get", "_BaseDepartment", new { area = "PartialView", siteid=886 ,ViewDepartment = new ViewDepartment { Department = new Department { DepartmentId = 86 } } })        
+   </li>
+  </ul>
+  <div class="subNav">东营市立脑科医院</div>
+  <ul class="navContent">
+      <li><img src="/Sites/Uploaded/Image/2015/1/tu.jpg" style="float:left; margin-right:5px; padding-top:6px;">
+           <p>                东营市人民医院于1992年5月1日正式开诊，20多年来，现已发展成为黄河三角洲地区一家集医疗、教学、科研、急救、预防为一体的现代化综合三级医院。2011年7月5日，东营市人民政府与山东省立医院（集团）合作共建东营市人民医院。<a href="@Html.GetSiteUrl(419)">更多</a></p>
+ </li>
+  </ul>
+</div>
+
+</div>
+<div class="home_Center floatL">
+    <div class="home_new">
+        <h2 class="title21"><a href="@Html.GetColumnUrl(7)" class="more">更多</a><span>医院新闻</span></h2>
+        <div class="floatL scroll_img">
+            @Html.Action("_SwitchImage", "_Article", new{area = "PartialView",viewArticle = new ViewArticle{Article = new Article {ColumnId = 7, IsTop = true},IsSelectChildren = true,IsShowTitle = true,TitleLength = 24,Count = 5,IsJumpTarget = true}})
+        </div>
+        <div class="getNews">
+            @Html.Action("_Get", "_Article", new{area = "PartialView",viewArticle = new ViewArticle{Article = new Article { ColumnId = 7  },IsShowTitle = true,TitleLength = 26,IsShowContent = true,ContentLength = 90,IsJumpTarget = true}})
+        </div>
+        <ul class="newlist2">
+            @Html.Action("_List", "_Article", new { area = "PartialView", viewArticle = new ViewArticle { Article = new Article { ColumnId = 7 }, Count = 5, IsShowTitle = true, TitleLength = 28, IsJumpTarget = true, IsShowDate = true, IsShowNewIcon = true}})
+            <div class="clearb"></div>
+        </ul>
+        <div class="clearb"></div>
+    </div>
+    <div class="height20"></div>
+    <div class="img_boxs">
+        <a href="@Html.GetColumnUrl(18)" class="AddImg img_1"><img src="/Sites/Uploaded/UserUpLoad/20161205/20161205150616.jpg" /></a>
+        <a href="/Html/News/Main/519.html" class="AddImg img_2"><img src="/Sites/Uploaded/UserUpLoad/20161201/20161201173345.jpg"/></a>
+        <a href="@Html.GetColumnUrl(46)" class="AddImg"><img src="/Sites/Uploaded/UserUpLoad/20151026/20151026161926.jpg" /></a>
+        <div class="clearb"></div>
+    </div>
+    <div class="height20"></div>
+    <div class="NewLists">
+        <div class="mediaBox floatL">
+            <h2 class="title21"><a href="@Html.GetColumnUrl(8)" class="more">更多</a><span>医院公告</span></h2>
+            <ul class="newlist2" id="div1">
+                @Html.Action("_List", "_Article", new { area = "PartialView", viewArticle = new ViewArticle { Article = new Article { ColumnId = 8 }, Count = 2, IsShowTitle = true, TitleLength = 17, IsJumpTarget = true,IsShowNewIcon = true}})
+            </ul>
+            <script language="javascript">
+                var box = document.getElementById("div1"), can = true;
+                box.innerHTML += box.innerHTML;
+                box.onmouseover = function () { can = false };
+                box.onmouseout = function () { can = true };
+                new function () {
+                    var stop = box.scrollTop % 30 == 0 && !can;
+                    if (!stop) box.scrollTop == parseInt(box.scrollHeight / 2) ? box.scrollTop = 0 : box.scrollTop++;
+                    setTimeout(arguments.callee, box.scrollTop % 30 ? 10 : 2000);
+                };
+            </script>
+            <div class="clearb"></div>
+            <ul class="newlist2 lh_zs">
+                @Html.Action("_List", "_Article", new { area = "PartialView", viewArticle = new ViewArticle { Article = new Article { ColumnId = 8 }, Count = 8, IsShowTitle = true, TitleLength = 36, IsJumpTarget = true,SkipCount=2}})
+                <div class="clearb"></div>
+            </ul>
+        </div>
+        <div class="mediaBox floatL mr_l">
+            <h2 class="title21"><a href="@Html.GetColumnUrl(9)" class="more">更多</a><span>媒体报道</span></h2>
+            <ul class="newlist2" id="div2">
+                <li class="article_box">
+                  @Html.Action("_Get", "_Article", new { area = "PartialView",viewArticle = new ViewArticle { Article = new Article {ColumnId = 9}, IsJumpTarget = true, IsShowTitle = true, TitleLength = 17}})
+                </li>
+                <li class="article_box">
+                  @Html.Action("_Get", "_Article", new { area = "PartialView",viewArticle = new ViewArticle { Article = new Article {ColumnId = 9}, IsJumpTarget = true, IsShowTitle = true, TitleLength = 17,SkipCount=1} })
+                </li>
+            </ul>
+            <script language="javascript">
+                var box1 = document.getElementById("div2"), can = true;
+                box1.innerHTML += box1.innerHTML;
+                box1.onmouseover = function () { can = false };
+                box1.onmouseout = function () { can = true };
+                new function () {
+                    var stop = box1.scrollTop % 30 == 0 && !can;
+                    if (!stop) box1.scrollTop == parseInt(box1.scrollHeight / 2) ? box1.scrollTop = 0 : box1.scrollTop++;
+                    setTimeout(arguments.callee, box1.scrollTop % 30 ? 10 : 2000);
+                };
+            </script>
+            <ul class="newlist2 lh_zs">
+                @Html.Action("_List", "_Article", new { area = "PartialView", viewArticle = new ViewArticle { Article = new Article { ColumnId = 9 }, Count = 8, IsShowTitle = true, TitleLength = 36, IsJumpTarget = true, SkipCount=2}})
+                <div class="clearb"></div>
+            </ul>
+        </div>
+        <div class="mediaBox floatR">
+            <h2 class="title21"><a href="@Html.GetColumnUrl(35)" class="more">更多</a><span>医保政策</span></h2>
+            <div class="leftcontent left_new">
+                <ul class="newlist3">
+                    @Html.Action("_List", "_Article", new { area = "PartialView", viewArticle = new ViewArticle { Article = new Article { ColumnId = 35 }, Count =10, IsShowTitle = true, TitleLength = 36, IsJumpTarget = true}})
+                    <div class="clearb"></div>
+                </ul>
+            </div>
+        </div>
+        <div class="clearb"></div>
+    </div>
+</div>
+
+<div class="clearb"></div>
+<div class="height20"></div>
+ @Html.Action("_Organizations", "_Plugin", new { area = "PartialView", isDepartment = true, isDoctor = true }) 
+<div class="height20"></div>
+<div class="home_Bottom">
+    <div class="videoBox floatL">
+        <h2 class="title22"><a href="@Html.GetSiteUrl(110)" class="more">更多</a><span class="hover">视频中心</span></h2>
+        <ul class="video_con">
+            @Html.Action("_List", "_VideoArticle", new { area = "PartialView", viewVideoArticle = new ViewVideoArticle { VideoArticle = new VideoArticle { SiteId = 110}, Count = 1, IsShowTitle = true, TitleLength = 13, IsJumpTarget = true, IsShowImage=true,IsShowAuthor = true} })
+            <div class="videobg"></div>
+        </ul>
+    </div>
+    <div class="bottom_new floatL">
+        <h2 class="title21"><a href="@Html.GetSiteUrl(402)" class="more">更多</a><span>健康体检</span></h2>
+        <div class="SwitchImage_jk fl scroll_img">
+            @Html.Action("_SwitchImage", "_Article", new{area = "PartialView",viewArticle = new ViewArticle{Article = new Article {ColumnId =133},IsSelectChildren = true,IsShowTitle = true,TitleLength = 24,Count = 5,IsJumpTarget = true}})
+
+        </div>
+        <div class="con_p">
+        <p>东营市人民医院体检中心创建于2004年10月，依托综合医院雄厚的医疗资源，经过10多年的建设与发展，现已成为东营市规模最大的集健康体检、健康评估、健康干预、健康促进于一体的健康管理中心。中心位于东营市人民医院北院区，建筑面积1.01万m2。中心目前承担...<a class="more" href="/Html/Departments/Main/Detail_73.html">详细>></a></p>
+        </div>
+    </div>
+    <div class="left_new floatR yuanbao">
+        <h2 class="title22"><a href="@Url.Action("Overview", "Journals", new { area = "Hospitals" })" class="more">更多</a><span class="hover">医院院报</span></h2>
+        <div class="leftcontent">
+            <ul class="newlist4">
+                @Html.Action("_List", "_JournalIssue", new { area = "PartialView", viewJournalIssue = new ViewJournalIssue { JournalIssue = new JournalIssue { }, IsShowImage = true, Count = 2 } })
+                <div class="clearb"></div>
+            </ul>
+        </div>
+    </div>
+    <div class="clearb"></div>
+</div>
+
+
+<div class="erwm_sm">
+    <div class="kefu" id="kefu">
+        <div id="kefu1">
+            <h1><img src="/Sites/Uploaded/UserUpLoad/20161102/20161102101007.jpg"></h1>
+            <div class="weiboBox_content" style="position:relative;overflow:visible">
+                <h2><a href="javascript:void(0)" class="closeBtn1"><img src="/Sites/Uploaded/UserUpLoad/20161102/20161102101033.jpg" /></a></h2>
+                 <a href="/Sites/Uploaded/UserUpLoad/20161102/20161102101609.jpg" class="erweimaHover" target="_bank"><img class="erweima" src="/Sites/Uploaded/UserUpLoad/20161102/20161102101609.jpg" /><img style="position:absolute;right:0;top:0;width:0;z-index:1000" class="hide" src="/Sites/Uploaded/UserUpLoad/20161102/20161102101609.jpg" /></a>
+                <p>微信扫一扫</p>
+                <p><a href="/Sites/Uploaded/UserUpLoad/20161102/20161102101609.jpg" target="_bank">挂号交费不排队 报告结果手机查</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+@*客服菜单定位*@
+<script type="text/javascript">
+$(function(){
+    function changePosition(){
+        var Widwidth = $(window).width();
+        var rightVal =0;
+        if(Widwidth>1000)
+        {
+            rightVal = (Widwidth-1200)/2-120;
+        }
+        $("#kefu").css({"left":rightVal,"bottom":"50px"});
+    }
+    changePosition();
+    $("#kefu").show();
+    $(window).resize(function(){changePosition()});//浏览器窗口变化时重新定位
+
+    $('.erweimaHover').hover(function(){
+        $(".erweimaHover .hide").stop().animate({ right:"-138px",width: "136px", })
+    },function(){
+        $(".erweimaHover .hide").stop().animate({ right:"0",width: "0"})
+    })
+});
+$(function() {
+    $(".closeBtn1").click(function(){
+        $(".erwm_sm").hide();
+    })
+});
+</script>
+
+
+
+
+
+
